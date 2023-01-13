@@ -65,7 +65,7 @@ void rgba_sub(struct rgba* my_rgba, uint8_t r, uint8_t g, uint8_t b, uint8_t a) 
     my_rgba->a = rgba_add_a;
 }
 
-void rgb_mul(struct rgba* my_rgba, uint8_t r, uint8_t g, uint8_t b, uint8_t a) {
+void rgba_mul(struct rgba* my_rgba, uint8_t r, uint8_t g, uint8_t b, uint8_t a) {
     int rgba_add_r = my_rgba->r * r;
     int rgba_add_g = my_rgba->g * g;
     int rgba_add_b = my_rgba->b * b;
@@ -79,7 +79,7 @@ void rgb_mul(struct rgba* my_rgba, uint8_t r, uint8_t g, uint8_t b, uint8_t a) {
     my_rgba->a = rgba_add_a;
 }
 
-void rgb_div(struct rgba* my_rgba, uint8_t r, uint8_t g, uint8_t b, uint8_t a) {
+void rgba_div(struct rgba* my_rgba, uint8_t r, uint8_t g, uint8_t b, uint8_t a) {
     //Do zero division checks.
     if (r == 0) {
         printf("Error: rgb_div(): Division by zero at red.\n");
@@ -101,5 +101,16 @@ void rgb_div(struct rgba* my_rgba, uint8_t r, uint8_t g, uint8_t b, uint8_t a) {
 }
 
 int rgba_to_int(struct rgba* my_color) {
-    return my_color->r * my_color->g * my_color->b * my_color->a;
+    return (my_color->r << 24) | (my_color->g << 16) | (my_color->b << 8) | my_color->a;
+}
+
+struct rgba int_to_rgba(int color) {
+    struct rgba my_color;
+
+    my_color.r = (color >> 24) & 0xFF;
+    my_color.g = (color >> 16) & 0xFF;
+    my_color.b = (color >> 8) & 0xFF;
+    my_color.a = color & 0xFF;
+    
+    return my_color;
 }

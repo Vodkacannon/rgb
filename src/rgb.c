@@ -88,13 +88,15 @@ void rgb_div(struct rgb* my_rgb, uint8_t r, uint8_t g, uint8_t b) {
 }
 
 int rgb_to_int(struct rgb* my_color) {
-    uint8_t rgb_temp_r = 0;
-    uint8_t rgb_temp_g = 0;
-    uint8_t rgb_temp_b = 0;
-    
-    if (r == 0) {
-        rgb_temp_r = 1;
-    }
+    return (my_color->r << 16) | (my_color->g << 8) | (my_color->b);
+}
 
-    return my_color->r * my_color->g * my_color->g;
+struct rgb int_to_rgb(int color) {
+    struct rgb my_color;
+
+    my_color.r = (color >> 16) & 0xFF;
+    my_color.g = (color >> 8) & 0xFF;
+    my_color.b = color & 0xFF;
+    
+    return my_color;
 }
