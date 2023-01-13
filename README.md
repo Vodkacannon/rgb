@@ -1,5 +1,5 @@
 # rgb
-A C color library/API.
+A color library/API written with C.
 
 ## Features
 - Red, green, blue channel color.
