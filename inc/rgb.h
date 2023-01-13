@@ -1,5 +1,8 @@
 #include <stdint.h>
 
+#define true 1
+#define false 0
+
 //This struct is maximally, memory-efficient; be careful of overflow.
 struct rgb {
     uint8_t r;
