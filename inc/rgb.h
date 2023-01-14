@@ -1,3 +1,6 @@
+#ifndef RGB_H
+#define RGB_H
+
 #include <stdint.h>
 
 #define true 1
@@ -20,3 +23,7 @@ void rgb_div(struct rgb* my_rgb, uint8_t r, uint8_t g, uint8_t b);
 int rgb_to_int(struct rgb* my_color);
 
 struct rgb int_to_rgb(int color);
+
+char* rgb_to_hex(struct rgb* my_color);
+
+#endif

@@ -100,3 +100,9 @@ struct rgb int_to_rgb(int color) {
     
     return my_color;
 }
+
+char* rgb_to_hex(struct rgb* my_color) {
+    char* hex = malloc(7);
+    sprintf(hex, "%02X%02X%02X", my_color->r, my_color->g, my_color->b);
+    return hex;
+}

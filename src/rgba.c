@@ -114,3 +114,9 @@ struct rgba int_to_rgba(int color) {
     
     return my_color;
 }
+
+char* rgba_to_hex(struct rgba* my_color) {
+    char* hex = malloc(8);
+    sprintf(hex, "%02X%02X%02X%02X", my_color->r, my_color->g, my_color->b, my_color->a);
+    return hex;
+}
